@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Shubh Deepawali, Muskan 🪔</title>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Playfair+Display:ital,wght@0,600;1,500&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#ffc857;--orange:#ff8a1f;--rose:#ff5d8f;--ink:#fff3dc;--card:rgba(255,200,87,.1);--line:rgba(255,200,87,.35)}
+*{box-sizing:border-box;margin:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%}
+body{font-family:'Playfair Display',Georgia,serif;color:var(--ink);background:radial-gradient(ellipse at 50% 100%,#6b1f3a 0,#2a0a3d 45%,#0d0420 100%);overflow:hidden}
+#cv{position:fixed;inset:0;z-index:1;width:100%;height:100%}
+.page{position:fixed;inset:0;z-index:2;display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:calc(56px + env(safe-area-inset-top,0px)) 20px calc(84px + env(safe-area-inset-bottom,0px));overflow-y:auto;pointer-events:none}
+.page>*{pointer-events:auto}
+.page.on{display:flex;animation:in .7s ease}
+@keyframes in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.sub,.s,.mt small{white-space:pre-line}
+.s{font-family:'Dancing Script','Segoe Script',cursive}
+h1{font-size:clamp(3rem,15vw,5.5rem);line-height:1;background:linear-gradient(90deg,var(--gold),var(--orange),var(--rose));-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 14px rgba(255,160,50,.4))}
+h2{font-size:clamp(1.6rem,6vw,2.3rem);margin-bottom:6px;color:var(--gold)}
+.sub{opacity:.85;margin:6px 0 18px;max-width:34ch}
+button{font:inherit;cursor:pointer;border:0;color:#2a0a3d;font-weight:600;background:linear-gradient(135deg,var(--gold),var(--orange));padding:13px 28px;border-radius:40px;font-size:1.05rem;box-shadow:0 8px 24px rgba(255,138,31,.4);transition:transform .2s}
+button:active{transform:scale(.94)}
+.back{background:var(--card)!important;color:var(--ink)!important;box-shadow:none!important;border:1px solid var(--line)!important}
+.dots{position:fixed;top:calc(16px + env(safe-area-inset-top,0px));left:0;right:0;z-index:20;display:flex;gap:8px;justify-content:center;pointer-events:none}
+.dots i{width:9px;height:9px;border-radius:50%;background:var(--line);transition:.3s}.dots i.on{background:var(--gold);transform:scale(1.4);box-shadow:0 0 8px var(--gold)}
+.nav{position:fixed;bottom:0;left:0;right:0;display:flex;justify-content:center;gap:12px;padding:14px 16px calc(14px + env(safe-area-inset-bottom,0px));z-index:20}
+.hide{display:none!important}
+.glass{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:22px;max-width:440px;width:100%;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+/* diya */
+.diya{position:relative;width:64px;height:60px;cursor:pointer;display:inline-block;margin:6px}
+.bowl{position:absolute;bottom:0;left:0;width:64px;height:30px;border-radius:0 0 64px 64px;background:linear-gradient(#e0752b,#7a3010);box-shadow:inset 0 4px 0 #ffb066}
+.flame{position:absolute;left:50%;bottom:28px;width:16px;height:30px;margin-left:-8px;border-radius:50% 50% 50% 50%/62% 62% 38% 38%;background:radial-gradient(ellipse at 50% 75%,#fff 8%,#ffd166 40%,#ff7b00 85%);transform:scale(0);transform-origin:bottom;transition:transform .5s}
+.diya.lit .flame{transform:scale(1);animation:fk .18s infinite alternate}
+.diya.lit{filter:drop-shadow(0 0 18px #ff9a1f)}
+@keyframes fk{to{transform:scale(1.08,.94) rotate(3deg)}}
+.diya.big{transform:scale(2.6);margin:50px 0 60px}
+.row{display:flex;flex-wrap:wrap;justify-content:center;max-width:380px}
+/* mithai */
+.mg{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;width:min(340px,88vw)}
+.mt{padding:16px 8px;border-radius:18px;background:var(--card);border:1px solid var(--line);cursor:pointer;font-size:2.6rem;user-select:none}
+.mt small{display:block;font-size:.85rem;margin-top:6px;opacity:.9;line-height:1.3}
+/* shayari */
+.shayari{min-height:170px;display:flex;align-items:center;justify-content:center;font-size:clamp(1.15rem,4.6vw,1.4rem);line-height:1.7;font-style:italic;white-space:pre-line;cursor:pointer}
+.big{font-size:clamp(2.2rem,9vw,3.6rem);color:var(--gold);animation:beat 1.4s infinite;text-shadow:0 0 20px rgba(255,160,50,.6)}
+@keyframes beat{50%{transform:scale(1.07)}}
+.paper{text-align:left;max-height:56vh;overflow-y:auto;font-size:1.02rem;line-height:1.75;white-space:pre-wrap;background:#fff3dc;color:#4a2a1a;border-radius:8px;padding:22px;box-shadow:0 0 40px rgba(255,160,50,.45);max-width:480px;width:100%}
+@keyframes bob{50%{transform:translateY(-10px)}}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01s!important}}
+</style>
+</head>
+<body>
+<canvas id="cv"></canvas>
+<audio id="bgm" src="song.mp3" loop preload="auto"></audio>
+<div class="dots" id="dots"></div>
+
+<!-- 1 -->
+<section class="page on">
+  <p class="s" style="font-size:1.6rem">Navneet ki taraf se</p>
+  <div class="diya big" id="d0"><div class="flame"></div><div class="bowl"></div></div>
+  <h1 class="s" id="t1" style="opacity:.35">Shubh Deepawali, Muskan</h1>
+  <p class="sub" id="s1">Ek diya jalao Muskan, aur dekho,
+roshni ban ke main tumhare paas hoon 🪔
+(diya par tap karo)</p>
+  <button id="start" class="hide">Shuru karein ✨</button>
+</section>
+
+<!-- 2 -->
+<section class="page">
+  <h2>Diye Jalao 🪔</h2>
+  <p class="sub">Har diya ek wajah hai, Muskan,
+ke tum meri zindagi ki roshni ho.
+Saare 7 jalao.</p>
+  <div class="row" id="row"></div>
+  <p class="s" id="dl" style="font-size:1.5rem;min-height:2.6em;margin-top:14px"></p>
+</section>
+
+<!-- 3 -->
+<section class="page">
+  <h2>Patakhe Phodo 🎆</h2>
+  <p class="sub">Aasman ko chhoo lo, Muskan,
+aaj ki raat sirf tumhari hai!
+(jahan chaho tap karo)</p>
+  <p class="s" style="font-size:1.6rem"><span id="fc">0</span> / 8</p>
+  <p class="s" id="fm" style="font-size:1.5rem;min-height:2.6em;margin-top:8px"></p>
+</section>
+
+<!-- 4 -->
+<section class="page">
+  <h2>Diwali ki Shayari ✨</h2>
+  <p class="sub">Tap karke agli shayari padho</p>
+  <div class="glass"><div class="shayari" id="sh"></div><p id="shc" style="opacity:.7;font-size:.85rem;margin-top:8px"></p></div>
+</section>
+
+<!-- 5 -->
+<section class="page">
+  <h2>Mithai Box 🍬</h2>
+  <p class="sub">Mithai kholo, aur suno,
+meethi si kuch baatein dil ki</p>
+  <div class="mg" id="mg"></div>
+</section>
+
+<!-- 6 -->
+<section class="page">
+  <h2 class="s" style="font-size:clamp(2rem,8vw,3rem)">Meri Diwali, Tum Ho 🪔</h2>
+  <p class="sub">Dil ko thaam ke ek baar chhoo lo,
+yeh diya sirf tumse jalega...
+(diya par tap karo)</p>
+  <div class="diya big" id="d6"><div class="flame"></div><div class="bowl"></div></div>
+  <div class="big s hide" id="fin">Happy Diwali, Muskan ❤️</div>
+  <p class="s hide" id="fin2" style="font-size:1.4rem;margin-top:10px;max-width:30ch">Ek khat tumhare naam aaya hai,
+Next dabao, dil ka paigaam aaya hai 💌</p>
+</section>
+
+<!-- 7 -->
+<section class="page">
+  <h2 id="lt" class="s" style="font-size:2.2rem">Tumhare naam ek khat 💌</h2>
+  <div id="env" style="font-size:5.5rem;cursor:pointer;animation:bob 2s infinite">💌</div>
+  <p class="sub" id="lh">Khat kholne ke liye tap karo</p>
+  <div class="paper hide" id="paper"></div>
+  <div class="big s hide" id="lbig" style="margin-top:14px">Happy Diwali, Muskan ❤️</div>
+</section>
+
+<div class="nav"><button class="back" id="prev">‹ Back</button><button id="next">Next ›</button></div>
+
+<script>
+const $=s=>document.querySelector(s),pages=[...document.querySelectorAll('.page')];
+// Background music: starts on the first click anywhere
+const bgm = document.getElementById('bgm');
+bgm.volume = 0.6;
+bgm.loop = true;
+
+let musicStarted = false;
+
+document.addEventListener('pointerdown', function startMusic() {
+  if (musicStarted) return;
+
+  bgm.play().then(() => {
+    musicStarted = true;
+  }).catch(error => {
+    console.log("Music could not start:", error);
+  });
+}, { once: true });
+let cur=0;const dots=$('#dots');pages.forEach(()=>dots.append(document.createElement('i')));
+
+/* canvas: stars + fireworks */
+const cv=$('#cv'),cx=cv.getContext('2d');let W,H,ps=[],stars=[];
+function rs(){W=cv.width=innerWidth;H=cv.height=innerHeight;stars=[...Array(70)].map(()=>({x:Math.random()*W,y:Math.random()*H*.8,r:Math.random()*1.4+.3,p:Math.random()*6}))}
+rs();addEventListener('resize',rs);
+function burst(x,y){const c=['#ffc857','#ff8a1f','#ff5d8f','#fff3dc','#c77dff'][Math.random()*5|0];
+ for(let i=0;i<46;i++){const a=Math.PI*2*i/46,v=1.5+Math.random()*3.2;ps.push({x,y,vx:Math.cos(a)*v,vy:Math.sin(a)*v,l:1,c})}}
+function loop(t){cx.clearRect(0,0,W,H);
+ stars.forEach(s=>{cx.globalAlpha=.4+.6*Math.abs(Math.sin(t/900+s.p));cx.fillStyle='#fff3dc';cx.beginPath();cx.arc(s.x,s.y,s.r,0,7);cx.fill()});
+ ps=ps.filter(p=>p.l>0);ps.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=.04;p.vx*=.985;p.l-=.013;cx.globalAlpha=Math.max(p.l,0);cx.fillStyle=p.c;cx.beginPath();cx.arc(p.x,p.y,2.2,0,7);cx.fill()});
+ requestAnimationFrame(loop)}
+requestAnimationFrame(loop);
+function show(n){for(let i=0;i<n;i++)setTimeout(()=>burst(W*(.15+Math.random()*.7),H*(.15+Math.random()*.45)),i*260)}
+
+/* nav */
+function go(i){cur=Math.max(0,Math.min(pages.length-1,i));pages.forEach((p,k)=>p.classList.toggle('on',k===cur));
+ [...dots.children].forEach((d,k)=>d.classList.toggle('on',k===cur));
+ $('#prev').classList.toggle('hide',cur===0);$('#next').classList.toggle('hide',cur===0||cur===pages.length-1)}
+$('#next').onclick=()=>go(cur+1);$('#prev').onclick=()=>go(cur-1);$('#start').onclick=()=>go(1);
+
+/* 1 */
+$('#d0').onclick=()=>{if($('#d0').classList.contains('lit'))return;$('#d0').classList.add('lit');$('#t1').style.opacity=1;$('#s1').textContent='Jahan tum ho wahan andhera kahan,\ntumhari zindagi mein har roz Diwali rahe 🪔';$('#start').classList.remove('hide');show(3)};
+
+/* 2 */
+let lit=0;const DL=['Teri muskaan, mera sukoon 😊','Teri awaaz, meri dhun 🎧','Tera saath, meri taaqat 🤝','Teri care, meri dua 🤗','Teri masti, meri khushi 😄','Tera pyaar, meri duniya 💖','Tu hi tu, bas tu 🪔'];
+DL.forEach(t=>{const d=document.createElement('div');d.className='diya';d.innerHTML='<div class="flame"></div><div class="bowl"></div>';
+ d.onclick=()=>{if(d.classList.contains('lit'))return;d.classList.add('lit');$('#dl').textContent=t;if(++lit===7){setTimeout(()=>{$('#dl').textContent='Saare diye jal gaye, jaise\nteri aahat se roshan ho gayi meri raat 🌟';show(5)},900)}};$('#row').append(d)});
+
+/* 3 */
+let fc=0;
+addEventListener('pointerdown',e=>{if(cur!==2||e.target.closest('button'))return;burst(e.clientX,e.clientY);
+ if(fc<8){fc++;$('#fc').textContent=fc;if(fc===8){$('#fm').textContent='Dhamaka toh bahut hua,\npar sabse haseen tumhari muskaan hai 😍';show(6)}}});
+
+/* 4 */
+const SH=[`Diye ki roshni se zyada,\ntere chehre ki muskaan jagmagati hai.`,`Is Diwali bas ek hi dua hai,\nteri har khushi mere naam ho jaaye.`,`Rangoli ke rang phike hain,\njab tak tere haath ka rang na chadhe.`,`Har diya mujhse yahi kehta hai,\ntere bina meri Diwali adhoori hai.`,`Zindagi mein andhere aaye toh kya,\ntu saath hai, toh har raat Diwali hai.`];
+let si=0;function sh(){$('#sh').textContent=SH[si];$('#shc').textContent=(si+1)+' / '+SH.length+' • tap for next'}
+$('#sh').onclick=()=>{si=(si+1)%SH.length;sh()};sh();
+
+/* 5 */
+[['🍥','Jalebi','Jalebi ki meethas feeki lage,\njab tu muskurati hai'],['🟡','Laddu','Tere bina laddu bhi phika,\ntu hai toh har swaad meetha'],['🍫','Barfi','Meri zindagi ki sabse meethi baat,\nbas tera naam hai, Muskan'],['🍡','Gulab Jamun','Jaise chaasni mein gulab jamun,\nmain tere pyaar mein doob gaya 🥹']]
+.forEach(([e,n,m])=>{const d=document.createElement('div');d.className='mt';d.innerHTML=`${e}<small>${n}</small>`;d.onclick=()=>{d.innerHTML=`${e}<small>${m}</small>`;burst(d.getBoundingClientRect().left+40,d.getBoundingClientRect().top)};$('#mg').append(d)});
+
+/* 6 */
+$('#d6').onclick=()=>{if($('#d6').classList.contains('lit'))return;$('#d6').classList.add('lit');$('#fin').classList.remove('hide');$('#fin2').classList.remove('hide');show(14);setInterval(()=>show(2),2500)};
+/* 7: letter */
+const L=`Happy Diwali, Meri Jaan! 🪔❤️
+
+Pata hai, aaj Diwali hai… har taraf roshni hai, har ghar mein khushiyan hain, lekin meri sabse khoobsurat roshni toh tu hai. ❤️ Kaash aaj tu mere paas hoti, toh tere saath ye Diwali manata, tere chehre ki muskurahat dekhta, tere saath diye jalata aur bas tujhe apne paas mehsoos karta. Shayad tab meri Diwali sach mein poori hoti.
+
+Jaan, main nahi jaanta ki tere dil mein kitni pareshaniyan hain, tu kitni cheezein akele seh rahi hai ya kabhi-kabhi kitna akela mehsoos karti hai. Lekin ek baat hamesha yaad rakhna — tu akeli nahi hai. Main hoon na, tere saath. Tere achhe waqt mein bhi aur tere mushkil waqt mein bhi. Jab tu khush hogi, main tere saath hansunga, aur jab kabhi tera dil udaas hoga, toh main tera haath thaam kar tujhe sambhalne ki poori koshish karunga.
+
+Main chahta hoon ki teri zindagi se har woh andhera door ho jo tujhe pareshaan karta hai. Teri aankhon mein aansuon ki jagah khushi ho, tere dil mein bechaini ki jagah sukoon ho aur tere chehre par woh pyaari si muskurahat hamesha rahe. Agar kabhi tujhe lage ki sab kuch mushkil ho raha hai, toh bas mere paas aa jaana. Tujhe har baar mazboot banne ki zaroorat nahi, mere saamne tu apni har feeling ke saath reh sakti hai.
+
+Aur sun, main tujhse sirf aaj ke din ya kisi khaas mauke par pyaar nahi karta. Main tujhe har roz, har haal mein aur har guzarte din ke saath aur zyada chahta hoon. Meri dua hai ki aane wali har Diwali hum ek saath manayein, bina kisi doori ke, ek hi ghar mein, ek hi aangan mein diye jalayein. Aur main har saal tujhe yaad dilata rahun ki tu meri zindagi ka kitna khoobsurat hissa hai.
+
+Happy Diwali, meri Muskan, meri jaan! 🪔❤️
+Rab kare teri zindagi hamesha roshan rahe, tere har khwaab ko manzil mile aur tujhe woh saari khushiyan naseeb hon jinki tu haqdar hai. Aur haan, jab tak main hoon, tujhe pyaar karne, teri fikr karne aur tera saath dene wala ek insaan hamesha rahega.
+
+Har diye ki roshni mein tera chehra nazar aaye,
+Har dua ke harf mein bas tera naam aaye.
+Na aaye kabhi koi andhera tere hisse mein,
+Khuda kare har khushi tere kadmon mein utar aaye.
+Tu sirf meri mohabbat nahi, meri har dua ka noor hai,
+Tu paas ho ya door, mera dil hamesha tere huzoor hai.
+Diwali ke hazaar diye bhi kya roshan karenge meri duniya,
+Jab meri duniya ki sabse haseen roshni toh tu hai. ❤️
+
+I love you so much, meri jaan. Hamesha khush rehna, aur kabhi khud ko akela mat samajhna.
+
+Tera apna,
+Navneet ❤️`;
+let typed=false;
+$('#env').onclick=()=>{if(typed)return;typed=true;['#env','#lh','#lt'].forEach(x=>$(x).classList.add('hide'));
+ const p=$('#paper');p.classList.remove('hide');let i=0;
+ const t=setInterval(()=>{p.textContent=L.slice(0,++i);p.scrollTop=p.scrollHeight;
+  if(i>=L.length){clearInterval(t);$('#lbig').classList.remove('hide');show(10);setInterval(()=>show(2),3000)}},18)};
+go(0);
+</script>
+</body>
+</html>
